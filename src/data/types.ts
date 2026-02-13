@@ -19,6 +19,7 @@ export interface Topic {
   name: string
   icon: string
   color: string
+  grades: number[]
   subtopics: Subtopic[]
 }
 

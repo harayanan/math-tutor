@@ -4,9 +4,11 @@ import { useEffect, useState } from 'react'
 import { topics } from '@/data/topics'
 import { getTopicMastery } from '@/lib/progress'
 import { TopicCard } from '@/components/topic-card'
+import { useGrade } from '@/lib/grade-context'
 
 export default function HomePage() {
   const [masteryMap, setMasteryMap] = useState<Record<string, number>>({})
+  const { grade } = useGrade()
 
   useEffect(() => {
     const map: Record<string, number> = {}
@@ -16,6 +18,11 @@ export default function HomePage() {
     }
     setMasteryMap(map)
   }, [])
+
+  const filteredTopics =
+    grade === 'all'
+      ? topics
+      : topics.filter((t) => t.grades.includes(Number(grade)))
 
   return (
     <div>
@@ -27,7 +34,7 @@ export default function HomePage() {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        {topics.map((topic) => (
+        {filteredTopics.map((topic) => (
           <TopicCard
             key={topic.id}
             topic={topic}

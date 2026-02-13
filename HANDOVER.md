@@ -1,6 +1,6 @@
 # Math Tutor — HANDOVER.md
 
-## Current Status: Deployed (v3 — animations)
+## Current Status: Deployed (v4 — 5 new topics + grade filter)
 
 ## What Was Done
 
@@ -38,13 +38,42 @@
 - `src/components/quiz-question.tsx` — animation states, confetti component, per-answer-type feedback styling
 - `src/components/streak-indicator.tsx` — bump animation on increment, milestone celebrations
 
+### Session 4 (v4 — 5 New Topics + Grade Filter)
+1. **5 new math topics** (500 new questions, 25 new subtopics):
+   - **Factors & Multiples** (Grid3x3/teal) — factors, multiples, primes, HCF, LCM
+   - **Data Handling** (BarChart2/cyan) — tables, mean/median/mode, bar graphs, pie charts, probability
+   - **Percentage** (Percent/orange) — basics, % of number, increase/decrease, profit & loss, applications
+   - **Symmetry** (FlipHorizontal2/fuchsia) — line symmetry, reflection, rotational, 2D shapes, 3D shapes
+   - **Logical Reasoning** (BrainCircuit/lime) — number patterns, analogies, operations, spatial, deduction
+2. **Grade/Class filter**: Dropdown in the header nav to filter topics by Class 4, 5, or 6. Selection persists in localStorage. Uses React context for shared state. Pre-Algebra and Percentage only appear for Class 5+; all other topics available for all grades.
+3. Total questions: ~1,120 (up from ~620). Total topics: 11 (up from 6). Total subtopics: 56 (up from 31).
+
+**Files created:**
+- `src/data/questions/factors-multiples.ts` — 100 questions (5 subtopics × 4 levels × 5 each)
+- `src/data/questions/data-handling.ts` — 100 questions
+- `src/data/questions/percentage.ts` — 100 questions
+- `src/data/questions/symmetry.ts` — 100 questions
+- `src/data/questions/logical-reasoning.ts` — 100 questions
+- `src/lib/grade-context.tsx` — React context provider for grade filter state
+- `src/components/ui/select.tsx` — shadcn/ui Select component
+
+**Files modified:**
+- `src/data/types.ts` — added `grades: number[]` to Topic interface
+- `src/data/topics.ts` — added 5 new topics with grade assignments, added grades to existing topics
+- `src/components/topic-card.tsx` — added 5 Lucide icons + 5 Tailwind color mappings
+- `src/lib/quiz-engine.ts` — imported 5 new question banks into allQuestions
+- `src/components/header.tsx` — added grade filter dropdown (Select component)
+- `src/app/layout.tsx` — wrapped app with GradeProvider
+- `src/app/page.tsx` — filters topics by selected grade
+
 ## Links
 - **GitHub**: https://github.com/harayanan/math-tutor
 - **Vercel**: https://math-tutor-rouge.vercel.app
 
 ## Architecture
-- 6 topics × 31 subtopics (5 each + 6 in Decimals) × 4 difficulty levels
-- ~620 questions with pre-built hints and explanations
+- 11 topics × 56 subtopics × 4 difficulty levels
+- ~1,120 questions with pre-built hints and explanations
+- Grade/class filter (4, 5, 6) in header — persisted in localStorage
 - Pre-quiz difficulty chooser (Level 1–4) with recommended level
 - Adaptive algorithm adjusts difficulty per-subtopic based on streaks
 - 3-tier hint system: hint1 (free) → hint2 (free) → Gemini Socratic hint (LLM)
@@ -54,10 +83,11 @@
 - None
 
 ## Next Steps
-- Add more questions to reach ~1,500 total (currently ~620)
+- Add more questions to reach ~1,500+ total (currently ~1,120)
 - Set GEMINI_API_KEY env var in Vercel for LLM hint functionality
 - Consider adding a "Reset Progress" button in settings
 - Consider dark mode support
+- Consider per-subtopic grade tagging (currently grades are per-topic)
 
 ## Last Reviewed
 2026-02-13

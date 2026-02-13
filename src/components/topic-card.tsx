@@ -11,6 +11,11 @@ import {
   Triangle,
   BookOpen,
   Variable,
+  Grid3x3,
+  BarChart2,
+  Percent,
+  FlipHorizontal2,
+  BrainCircuit,
 } from 'lucide-react'
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -20,6 +25,11 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Triangle,
   BookOpen,
   Variable,
+  Grid3x3,
+  BarChart2,
+  Percent,
+  FlipHorizontal2,
+  BrainCircuit,
 }
 
 const colorMap: Record<string, { bg: string; border: string; icon: string }> = {
@@ -29,6 +39,11 @@ const colorMap: Record<string, { bg: string; border: string; icon: string }> = {
   amber: { bg: 'bg-amber-50', border: 'border-amber-200', icon: 'text-amber-600' },
   rose: { bg: 'bg-rose-50', border: 'border-rose-200', icon: 'text-rose-600' },
   sky: { bg: 'bg-sky-50', border: 'border-sky-200', icon: 'text-sky-600' },
+  teal: { bg: 'bg-teal-50', border: 'border-teal-200', icon: 'text-teal-600' },
+  cyan: { bg: 'bg-cyan-50', border: 'border-cyan-200', icon: 'text-cyan-600' },
+  orange: { bg: 'bg-orange-50', border: 'border-orange-200', icon: 'text-orange-600' },
+  fuchsia: { bg: 'bg-fuchsia-50', border: 'border-fuchsia-200', icon: 'text-fuchsia-600' },
+  lime: { bg: 'bg-lime-50', border: 'border-lime-200', icon: 'text-lime-600' },
 }
 
 interface TopicCardProps {

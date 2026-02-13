@@ -8,6 +8,11 @@ import { questions as decimalsQuestions } from '@/data/questions/decimals'
 import { questions as geometryQuestions } from '@/data/questions/geometry'
 import { questions as wordProblemsQuestions } from '@/data/questions/word-problems'
 import { questions as preAlgebraQuestions } from '@/data/questions/pre-algebra'
+import { questions as factorsMultiplesQuestions } from '@/data/questions/factors-multiples'
+import { questions as dataHandlingQuestions } from '@/data/questions/data-handling'
+import { questions as percentageQuestions } from '@/data/questions/percentage'
+import { questions as symmetryQuestions } from '@/data/questions/symmetry'
+import { questions as logicalReasoningQuestions } from '@/data/questions/logical-reasoning'
 
 const allQuestions: Question[] = [
   ...arithmeticQuestions,
@@ -16,6 +21,11 @@ const allQuestions: Question[] = [
   ...geometryQuestions,
   ...wordProblemsQuestions,
   ...preAlgebraQuestions,
+  ...factorsMultiplesQuestions,
+  ...dataHandlingQuestions,
+  ...percentageQuestions,
+  ...symmetryQuestions,
+  ...logicalReasoningQuestions,
 ]
 
 const QUESTIONS_PER_SESSION = 10
