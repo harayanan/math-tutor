@@ -18,8 +18,9 @@ npm run lint      # ESLint
 ```
 
 ## Architecture
-- **6 topics**, 31 subtopics total (5 each + 6 in Decimals), **4 difficulty levels** (Easy/Medium/Hard/Very Hard)
-- **~620 questions** total (~100 per topic, 120 for Decimals), 5 questions per subtopic per level
+- **11 topics**, 56 subtopics total, **4 difficulty levels** (Easy/Medium/Hard/Very Hard)
+- **~1,120 questions** total (~100 per topic, 120 for Decimals), 5 questions per subtopic per level
+- **Grade/class filter**: Dropdown in header (Class 4/5/6/All) — filters topics on home page, persisted in localStorage via React context
 - **Pre-quiz difficulty chooser**: Students pick Level 1–4 before each quiz; recommended level shown based on adaptive progress
 - **10 questions per quiz session**, drawn from chosen level + adjacent levels if needed
 - **Adaptive algorithm**: 3 correct in a row → level up; 2 wrong in a row → level down; Level 4 + 80% accuracy → mastery
@@ -28,11 +29,12 @@ npm run lint      # ESLint
 - **Question banks**: Static TypeScript files in `src/data/questions/`
 
 ## Key Files
-- `src/data/types.ts` — shared TypeScript types (difficulty: 1–4)
-- `src/data/topics.ts` — topic & subtopic metadata (31 subtopics)
-- `src/data/questions/*.ts` — question banks (~100–120 questions each)
+- `src/data/types.ts` — shared TypeScript types (difficulty: 1–4, Topic includes `grades: number[]`)
+- `src/data/topics.ts` — topic & subtopic metadata (56 subtopics across 11 topics)
+- `src/data/questions/*.ts` — 11 question bank files (~100 questions each)
 - `src/lib/adaptive.ts` — difficulty adjustment algorithm (4 levels)
 - `src/lib/progress.ts` — localStorage CRUD
+- `src/lib/grade-context.tsx` — React context for grade filter state (localStorage-backed)
 - `src/lib/quiz-engine.ts` — question selection with difficulty chooser support, session management
 - `src/app/quiz/[topicId]/[subtopicId]/page.tsx` — quiz page with difficulty chooser UI
 - `src/app/api/hint/route.ts` — only API route (Gemini Socratic hints)
