@@ -1,6 +1,6 @@
 # Math Tutor — HANDOVER.md
 
-## Current Status: Complete (v1)
+## Current Status: Deployed (v1)
 
 ## What Was Done
 - Scaffolded Next.js 16.1.6 project with React 19, Tailwind 4, shadcn/ui
@@ -24,7 +24,11 @@
   - Topic page — subtopic list with progress bars and difficulty indicators
   - Quiz page — adaptive quiz with hints, streak counter, level-up notifications
   - Results page — score summary with accuracy, best streak, hints used
-- Production build passes with zero errors
+- Committed to GitHub and deployed to Vercel
+
+## Links
+- **GitHub**: https://github.com/harayanan/math-tutor
+- **Vercel**: https://math-tutor-rouge.vercel.app
 
 ## Architecture
 - 6 topics × 5 subtopics × 5 difficulty levels
@@ -39,8 +43,7 @@
 ## Next Steps
 - Add more questions to reach ~1,500 total (currently ~300)
 - Add animations/transitions for correct/incorrect feedback
-- Deploy to Vercel
-- Test with GEMINI_API_KEY for LLM hint functionality
+- Set GEMINI_API_KEY env var in Vercel for LLM hint functionality
 - Consider adding a "Reset Progress" button in settings
 - Consider dark mode support
 
