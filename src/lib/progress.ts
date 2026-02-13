@@ -44,7 +44,7 @@ export function getTopicMastery(subtopicIds: string[]): number {
       totalScore += 100
     } else {
       // Partial credit based on level progression
-      totalScore += ((p.currentLevel - 1) / 4) * 80
+      totalScore += ((p.currentLevel - 1) / 3) * 80
       // Plus accuracy bonus
       const stats = p.levelStats[p.currentLevel]
       if (stats && stats.total > 0) {

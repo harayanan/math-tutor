@@ -35,20 +35,31 @@ export function getQuestionsForSubtopic(
 
 export function createQuizSession(
   topicId: string,
-  subtopicId: string
+  subtopicId: string,
+  chosenDifficulty?: number
 ): QuizSession {
   const progress = getProgress(subtopicId)
-  const level = progress.currentLevel as 1 | 2 | 3 | 4 | 5
+  const level = chosenDifficulty ?? progress.currentLevel
 
-  // Get questions at current difficulty
+  // Get questions at chosen difficulty
   let pool = getQuestionsForSubtopic(topicId, subtopicId, level)
 
-  // If not enough questions at current level, supplement with adjacent levels
+  // Supplement with adjacent levels to reach 10 questions
   if (pool.length < QUESTIONS_PER_SESSION) {
-    const adjacentLevels = [level - 1, level + 1].filter(l => l >= 1 && l <= 5)
+    const adjacentLevels = [level - 1, level + 1].filter(l => l >= 1 && l <= 4)
     for (const adjLevel of adjacentLevels) {
       if (pool.length >= QUESTIONS_PER_SESSION) break
       const extra = getQuestionsForSubtopic(topicId, subtopicId, adjLevel)
+      pool = [...pool, ...extra]
+    }
+  }
+
+  // If still not enough, widen the search to all levels
+  if (pool.length < QUESTIONS_PER_SESSION) {
+    const allLevels = [1, 2, 3, 4].filter(l => l !== level && !([level - 1, level + 1].includes(l)))
+    for (const l of allLevels) {
+      if (pool.length >= QUESTIONS_PER_SESSION) break
+      const extra = getQuestionsForSubtopic(topicId, subtopicId, l)
       pool = [...pool, ...extra]
     }
   }

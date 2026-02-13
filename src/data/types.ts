@@ -4,7 +4,7 @@ export interface Question {
   id: string
   topicId: string
   subtopicId: string
-  difficulty: 1 | 2 | 3 | 4 | 5
+  difficulty: 1 | 2 | 3 | 4
   type: QuestionType
   question: string
   answer: string

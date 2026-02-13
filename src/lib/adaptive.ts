@@ -2,7 +2,7 @@ import { SubtopicProgress } from '@/data/types'
 
 const STREAK_TO_LEVEL_UP = 3
 const STREAK_TO_LEVEL_DOWN = 2
-const MAX_LEVEL = 5
+const MAX_LEVEL = 4
 const MIN_LEVEL = 1
 const MASTERY_ACCURACY = 0.8
 
@@ -81,11 +81,10 @@ export function processAnswer(
 
 export function getLevelLabel(level: number): string {
   switch (level) {
-    case 1: return 'Beginner'
-    case 2: return 'Easy'
-    case 3: return 'Medium'
-    case 4: return 'Hard'
-    case 5: return 'Expert'
+    case 1: return 'Easy'
+    case 2: return 'Medium'
+    case 3: return 'Hard'
+    case 4: return 'Very Hard'
     default: return 'Unknown'
   }
 }
@@ -93,10 +92,9 @@ export function getLevelLabel(level: number): string {
 export function getLevelColor(level: number): string {
   switch (level) {
     case 1: return 'text-emerald-500'
-    case 2: return 'text-sky-500'
-    case 3: return 'text-amber-500'
-    case 4: return 'text-orange-500'
-    case 5: return 'text-rose-500'
+    case 2: return 'text-amber-500'
+    case 3: return 'text-orange-500'
+    case 4: return 'text-rose-500'
     default: return 'text-muted-foreground'
   }
 }

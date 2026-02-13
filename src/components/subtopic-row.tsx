@@ -14,7 +14,7 @@ interface SubtopicRowProps {
 }
 
 export function SubtopicRow({ topicId, subtopic, progress }: SubtopicRowProps) {
-  const levelProgress = ((progress.currentLevel - 1) / 4) * 100
+  const levelProgress = ((progress.currentLevel - 1) / 3) * 100
   const levelLabel = getLevelLabel(progress.currentLevel)
   const levelColor = getLevelColor(progress.currentLevel)
 

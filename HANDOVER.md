@@ -1,38 +1,39 @@
 # Math Tutor — HANDOVER.md
 
-## Current Status: Deployed (v1)
+## Current Status: Deployed (v2 — harder questions, difficulty chooser)
 
 ## What Was Done
+
+### Session 1 (v1 — Initial Build)
 - Scaffolded Next.js 16.1.6 project with React 19, Tailwind 4, shadcn/ui
 - Installed shadcn/ui components: button, card, progress, badge, dialog
-- Created complete data layer:
-  - TypeScript types for questions, topics, progress, quiz sessions
-  - 6 topic definitions with 5 subtopics each (30 total subtopics)
-  - 6 question bank files (~50 questions each, ~300 total) across 5 difficulty levels
-- Built core logic:
-  - `progress.ts` — localStorage CRUD for per-subtopic progress tracking
-  - `adaptive.ts` — difficulty adjustment (3 correct → level up, 2 wrong → level down, mastery at level 5 + 80%)
-  - `quiz-engine.ts` — question selection, session management, encouraging messages
-  - `gemini.ts` — Gemini 2.0 Flash client for Socratic hints
-- Built API route:
-  - `/api/hint` — Gemini-powered Socratic hint generation (graceful fallback if no API key)
-- Built UI components:
-  - header, topic-card, subtopic-row, quiz-question, hint-panel
-  - progress-ring, streak-indicator, mastery-badge
-- Built all pages:
-  - Home page — topic grid with mastery percentages
-  - Topic page — subtopic list with progress bars and difficulty indicators
-  - Quiz page — adaptive quiz with hints, streak counter, level-up notifications
-  - Results page — score summary with accuracy, best streak, hints used
+- Created complete data layer, core logic, API route, UI components, all pages
 - Committed to GitHub and deployed to Vercel
+
+### Session 2 (v2 — Difficulty & Content Overhaul)
+1. **Harder problems for ages 10–12**: Rewrote all 6 question bank files from scratch. Problems now match 10–12 year old level (e.g., multi-digit arithmetic, complex fractions, multi-step word problems). Total questions: ~620 (up from ~300).
+2. **Difficulty chooser**: Added a pre-quiz difficulty selection screen (Level 1–4: Easy/Medium/Hard/Very Hard) with star ratings and a recommended level based on adaptive progress. Reduced difficulty levels from 5 to 4.
+3. **10-question quizzes**: Already was 10 per session (no change needed). Quiz engine now pulls from adjacent levels if the chosen level doesn't have enough questions.
+4. **Unit Conversion subtopic**: Added under Decimals — covers km/m/cm/mm, kg/g/mg, L/mL conversions with 20 questions across 4 difficulty levels.
+
+**Files changed:**
+- `src/data/types.ts` — difficulty type narrowed to 1–4
+- `src/lib/adaptive.ts` — MAX_LEVEL=4, updated labels/colors
+- `src/lib/quiz-engine.ts` — accepts chosen difficulty, widens pool search
+- `src/lib/progress.ts` — mastery calculation updated for 4 levels
+- `src/components/subtopic-row.tsx` — progress bar updated for 4 levels
+- `src/data/topics.ts` — added unit-conversion subtopic
+- `src/app/quiz/[topicId]/[subtopicId]/page.tsx` — difficulty chooser UI
+- `src/data/questions/*.ts` — all 6 files rewritten (~620 questions total)
 
 ## Links
 - **GitHub**: https://github.com/harayanan/math-tutor
 - **Vercel**: https://math-tutor-rouge.vercel.app
 
 ## Architecture
-- 6 topics × 5 subtopics × 5 difficulty levels
-- ~300 questions (50 per topic) with pre-built hints and explanations
+- 6 topics × 31 subtopics (5 each + 6 in Decimals) × 4 difficulty levels
+- ~620 questions with pre-built hints and explanations
+- Pre-quiz difficulty chooser (Level 1–4) with recommended level
 - Adaptive algorithm adjusts difficulty per-subtopic based on streaks
 - 3-tier hint system: hint1 (free) → hint2 (free) → Gemini Socratic hint (LLM)
 - All progress persisted in localStorage (no database needed)
@@ -41,11 +42,12 @@
 - None
 
 ## Next Steps
-- Add more questions to reach ~1,500 total (currently ~300)
+- Add more questions to reach ~1,500 total (currently ~620)
 - Add animations/transitions for correct/incorrect feedback
 - Set GEMINI_API_KEY env var in Vercel for LLM hint functionality
 - Consider adding a "Reset Progress" button in settings
 - Consider dark mode support
+- Deploy v2 to Vercel
 
 ## Last Reviewed
 2026-02-13

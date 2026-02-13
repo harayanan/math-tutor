@@ -38,6 +38,7 @@ export const topics: Topic[] = [
       { id: 'mul-div-dec', name: 'Multiplying & Dividing', description: 'Multiply and divide decimals' },
       { id: 'converting', name: 'Converting', description: 'Convert between fractions and decimals' },
       { id: 'rounding', name: 'Rounding', description: 'Round decimals to given places' },
+      { id: 'unit-conversion', name: 'Unit Conversion', description: 'Convert between metric units (km, m, cm, mm, kg, g, L, mL)' },
     ],
   },
   {
