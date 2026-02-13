@@ -1,6 +1,6 @@
 # Math Tutor — HANDOVER.md
 
-## Current Status: Deployed (v2 — harder questions, difficulty chooser)
+## Current Status: Deployed (v3 — animations)
 
 ## What Was Done
 
@@ -26,6 +26,18 @@
 - `src/app/quiz/[topicId]/[subtopicId]/page.tsx` — difficulty chooser UI
 - `src/data/questions/*.ts` — all 6 files rewritten (~620 questions total)
 
+### Session 3 (v3 — Animations)
+1. **Correct answer feedback**: Bounce + green glow on question card with confetti burst (16 CSS particles).
+2. **Incorrect answer feedback**: Shake + red flash on card and answer area. Fill-in inputs get colored borders.
+3. **Question transitions**: Each new question fades in with a slide-up animation.
+4. **Streak celebrations**: Streak indicator bounces on increment, turns orange with "FIRE!" badge at milestones (5/10/15).
+5. All pure CSS animations — no new dependencies added.
+
+**Files changed:**
+- `src/app/globals.css` — 8 keyframe animations + utility classes
+- `src/components/quiz-question.tsx` — animation states, confetti component, per-answer-type feedback styling
+- `src/components/streak-indicator.tsx` — bump animation on increment, milestone celebrations
+
 ## Links
 - **GitHub**: https://github.com/harayanan/math-tutor
 - **Vercel**: https://math-tutor-rouge.vercel.app
@@ -43,11 +55,9 @@
 
 ## Next Steps
 - Add more questions to reach ~1,500 total (currently ~620)
-- Add animations/transitions for correct/incorrect feedback
 - Set GEMINI_API_KEY env var in Vercel for LLM hint functionality
 - Consider adding a "Reset Progress" button in settings
 - Consider dark mode support
-- Deploy v2 to Vercel
 
 ## Last Reviewed
 2026-02-13
