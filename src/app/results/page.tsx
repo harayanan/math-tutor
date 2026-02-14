@@ -5,21 +5,24 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { Trophy, RotateCcw, ArrowRight, Target, Flame, Lightbulb } from 'lucide-react'
+import { Trophy, RotateCcw, ArrowRight, Target, Flame, Lightbulb, Filter } from 'lucide-react'
 import { getSessionStats, getEncouragingMessage } from '@/lib/quiz-engine'
 import { getSubtopic, getTopic } from '@/data/topics'
-import { QuizAnswer } from '@/data/types'
+import { QuizAnswer, Question } from '@/data/types'
+import { QuestionReviewCard } from '@/components/question-review-card'
 
 interface ResultsData {
   topicId: string
   subtopicId: string
   answers: QuizAnswer[]
+  questions?: Question[]
   totalQuestions: number
 }
 
 export default function ResultsPage() {
   const router = useRouter()
   const [data, setData] = useState<ResultsData | null>(null)
+  const [showOnlyWrong, setShowOnlyWrong] = useState(false)
 
   useEffect(() => {
     const raw = sessionStorage.getItem('quiz-results')
@@ -117,6 +120,50 @@ export default function ResultsPage() {
           <ArrowRight className="h-4 w-4" />
         </Button>
       </div>
+
+      {/* Review Section */}
+      {data.questions && data.questions.length > 0 && (() => {
+        const wrongCount = data.answers.filter((a) => !a.correct).length
+        const reviewAnswers = showOnlyWrong
+          ? data.answers.filter((a) => !a.correct)
+          : data.answers
+
+        return (
+          <div className="mt-8">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-semibold">Review Your Answers</h2>
+              {wrongCount > 0 && (
+                <button
+                  onClick={() => setShowOnlyWrong((v) => !v)}
+                  className={`inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full transition-colors ${
+                    showOnlyWrong
+                      ? 'bg-rose-100 text-rose-700'
+                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  }`}
+                >
+                  <Filter className="h-3 w-3" />
+                  {showOnlyWrong ? 'Show All' : 'Show Mistakes Only'}
+                </button>
+              )}
+            </div>
+            <div className="space-y-3">
+              {reviewAnswers.map((answer) => {
+                const question = data.questions!.find((q) => q.id === answer.questionId)
+                if (!question) return null
+                const originalIndex = data.answers.indexOf(answer)
+                return (
+                  <QuestionReviewCard
+                    key={answer.questionId}
+                    question={question}
+                    answer={answer}
+                    index={originalIndex}
+                  />
+                )
+              })}
+            </div>
+          </div>
+        )
+      })()}
     </div>
   )
 }

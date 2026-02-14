@@ -88,6 +88,7 @@ export default function QuizPage() {
           topicId: params.topicId,
           subtopicId: params.subtopicId,
           answers: newAnswers,
+          questions: session.questions,
           totalQuestions: session.questions.length,
         }
         sessionStorage.setItem('quiz-results', JSON.stringify(resultsData))

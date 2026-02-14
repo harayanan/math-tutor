@@ -1,6 +1,6 @@
 # Math Tutor — HANDOVER.md
 
-## Current Status: Deployed (v4 — 5 new topics + grade filter)
+## Current Status: Deployed (v5 — quiz review page)
 
 ## What Was Done
 
@@ -79,6 +79,19 @@
 - 3-tier hint system: hint1 (free) → hint2 (free) → Gemini Socratic hint (LLM)
 - All progress persisted in localStorage (no database needed)
 
+### Session 5 (v5 — Quiz Review Page)
+1. **Per-question review on results page**: After completing a quiz, children can now see every question they answered, their answer, the correct answer (if wrong), and the explanation.
+2. **QuestionReviewCard component**: Color-coded cards — emerald left border + green badge for correct, rose left border + red badge for incorrect. Shows answer comparison and explanation.
+3. **"Show Mistakes Only" filter**: Toggle button on the review section header to filter to only incorrect answers. Button uses rose styling when active.
+4. **Data flow**: Quiz page now stores `session.questions` array in sessionStorage alongside answers (~3KB extra). Results page is backward-compatible — review section only renders if questions data is present.
+
+**Files created:**
+- `src/components/question-review-card.tsx` — review card component (~65 lines)
+
+**Files modified:**
+- `src/app/quiz/[topicId]/[subtopicId]/page.tsx` — added `questions: session.questions` to resultsData
+- `src/app/results/page.tsx` — added Question import, QuestionReviewCard import, showOnlyWrong state, review section with filter toggle
+
 ## Blockers
 - None
 
@@ -90,4 +103,4 @@
 - Consider per-subtopic grade tagging (currently grades are per-topic)
 
 ## Last Reviewed
-2026-02-13
+2026-02-14
