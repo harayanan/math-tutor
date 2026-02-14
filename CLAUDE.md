@@ -18,8 +18,8 @@ npm run lint      # ESLint
 ```
 
 ## Architecture
-- **11 topics**, 56 subtopics total, **4 difficulty levels** (Easy/Medium/Hard/Very Hard)
-- **~1,120 questions** total (~100 per topic, 120 for Decimals), 5 questions per subtopic per level
+- **13 topics**, 66 subtopics total, **4 difficulty levels** (Easy/Medium/Hard/Very Hard)
+- **~1,320 questions** total (~100 per topic, 120 for Decimals), 5 questions per subtopic per level
 - **Grade/class filter**: Dropdown in header (Class 4/5/6/All) — filters topics on home page, persisted in localStorage via React context
 - **Pre-quiz difficulty chooser**: Students pick Level 1–4 before each quiz; recommended level shown based on adaptive progress
 - **10 questions per quiz session**, drawn from chosen level + adjacent levels if needed
@@ -30,8 +30,8 @@ npm run lint      # ESLint
 
 ## Key Files
 - `src/data/types.ts` — shared TypeScript types (difficulty: 1–4, Topic includes `grades: number[]`)
-- `src/data/topics.ts` — topic & subtopic metadata (56 subtopics across 11 topics)
-- `src/data/questions/*.ts` — 11 question bank files (~100 questions each)
+- `src/data/topics.ts` — topic & subtopic metadata (66 subtopics across 13 topics)
+- `src/data/questions/*.ts` — 13 question bank files (~100 questions each)
 - `src/lib/adaptive.ts` — difficulty adjustment algorithm (4 levels)
 - `src/lib/progress.ts` — localStorage CRUD
 - `src/lib/grade-context.tsx` — React context for grade filter state (localStorage-backed)

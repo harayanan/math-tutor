@@ -1,6 +1,6 @@
 # Math Tutor — HANDOVER.md
 
-## Current Status: Deployed (v5 — quiz review page)
+## Current Status: Deployed (v6 — money & time topics)
 
 ## What Was Done
 
@@ -71,8 +71,8 @@
 - **Vercel**: https://math-tutor-rouge.vercel.app
 
 ## Architecture
-- 11 topics × 56 subtopics × 4 difficulty levels
-- ~1,120 questions with pre-built hints and explanations
+- 13 topics × 66 subtopics × 4 difficulty levels
+- ~1,320 questions with pre-built hints and explanations
 - Grade/class filter (4, 5, 6) in header — persisted in localStorage
 - Pre-quiz difficulty chooser (Level 1–4) with recommended level
 - Adaptive algorithm adjusts difficulty per-subtopic based on streaks
@@ -92,11 +92,27 @@
 - `src/app/quiz/[topicId]/[subtopicId]/page.tsx` — added `questions: session.questions` to resultsData
 - `src/app/results/page.tsx` — added Question import, QuestionReviewCard import, showOnlyWrong state, review section with filter toggle
 
+### Session 6 (v6 — Money & Time Topics)
+1. **2 new math topics** (200 new questions, 10 new subtopics):
+   - **Money** (Coins/yellow) — notes & coins, add/sub, mul/div, word problems, bills & budgeting. Indian context (₹, paise).
+   - **Time & Calendar** (Clock/blue) — reading time, elapsed time, units of time, calendar calculations, word problems.
+2. Total questions: ~1,320 (up from ~1,120). Total topics: 13 (up from 11). Total subtopics: 66 (up from 56).
+3. Both topics available for all grades (4, 5, 6).
+
+**Files created:**
+- `src/data/questions/money.ts` — 100 questions (5 subtopics × 4 levels × 5 each)
+- `src/data/questions/time-calendar.ts` — 100 questions (5 subtopics × 4 levels × 5 each)
+
+**Files modified:**
+- `src/data/topics.ts` — added 2 new topic entries with subtopic metadata
+- `src/components/topic-card.tsx` — added Coins + Clock icons, yellow + blue color mappings
+- `src/lib/quiz-engine.ts` — imported 2 new question banks into allQuestions
+
 ## Blockers
 - None
 
 ## Next Steps
-- Add more questions to reach ~1,500+ total (currently ~1,120)
+- Add more questions to reach ~1,500+ total (currently ~1,320)
 - Set GEMINI_API_KEY env var in Vercel for LLM hint functionality
 - Consider adding a "Reset Progress" button in settings
 - Consider dark mode support

@@ -156,6 +156,34 @@ export const topics: Topic[] = [
       { id: 'logical-deduction', name: 'Logical Puzzles', description: 'Use logic to solve deduction puzzles' },
     ],
   },
+  {
+    id: 'money',
+    name: 'Money',
+    icon: 'Coins',
+    color: 'yellow',
+    grades: [4, 5, 6],
+    subtopics: [
+      { id: 'money-notes-coins', name: 'Notes & Coins', description: 'Identify denominations and convert between Rs and paise' },
+      { id: 'money-add-sub', name: 'Addition & Subtraction', description: 'Add and subtract money amounts, make change' },
+      { id: 'money-mul-div', name: 'Multiplication & Division', description: 'Unit price, equal sharing, and bulk buying' },
+      { id: 'money-word-problems', name: 'Money Word Problems', description: 'Shopping, budgeting, and real-world money scenarios' },
+      { id: 'money-bills-budgets', name: 'Bills & Budgeting', description: 'Read bills, plan simple budgets, and calculate savings' },
+    ],
+  },
+  {
+    id: 'time-calendar',
+    name: 'Time & Calendar',
+    icon: 'Clock',
+    color: 'blue',
+    grades: [4, 5, 6],
+    subtopics: [
+      { id: 'time-reading', name: 'Reading Time', description: 'Read analog/digital clocks, AM/PM, and 24-hour format' },
+      { id: 'time-elapsed', name: 'Elapsed Time', description: 'Calculate duration between events and start/end times' },
+      { id: 'time-units', name: 'Units of Time', description: 'Convert between hours, minutes, seconds, days, weeks, and months' },
+      { id: 'time-calendar-calc', name: 'Calendar', description: 'Days in months, leap years, and date calculations' },
+      { id: 'time-word-problems', name: 'Time Word Problems', description: 'Schedules, timetables, and travel time problems' },
+    ],
+  },
 ]
 
 export function getTopic(topicId: string): Topic | undefined {

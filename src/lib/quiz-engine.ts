@@ -13,6 +13,8 @@ import { questions as dataHandlingQuestions } from '@/data/questions/data-handli
 import { questions as percentageQuestions } from '@/data/questions/percentage'
 import { questions as symmetryQuestions } from '@/data/questions/symmetry'
 import { questions as logicalReasoningQuestions } from '@/data/questions/logical-reasoning'
+import { questions as moneyQuestions } from '@/data/questions/money'
+import { questions as timeCalendarQuestions } from '@/data/questions/time-calendar'
 
 const allQuestions: Question[] = [
   ...arithmeticQuestions,
@@ -26,6 +28,8 @@ const allQuestions: Question[] = [
   ...percentageQuestions,
   ...symmetryQuestions,
   ...logicalReasoningQuestions,
+  ...moneyQuestions,
+  ...timeCalendarQuestions,
 ]
 
 const QUESTIONS_PER_SESSION = 10
