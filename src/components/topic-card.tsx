@@ -18,6 +18,8 @@ import {
   BrainCircuit,
   Coins,
   Clock,
+  Trophy,
+  GraduationCap,
 } from 'lucide-react'
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -34,6 +36,8 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   BrainCircuit,
   Coins,
   Clock,
+  Trophy,
+  GraduationCap,
 }
 
 const colorMap: Record<string, { bg: string; border: string; icon: string }> = {
@@ -50,6 +54,8 @@ const colorMap: Record<string, { bg: string; border: string; icon: string }> = {
   lime: { bg: 'bg-lime-50', border: 'border-lime-200', icon: 'text-lime-600' },
   yellow: { bg: 'bg-yellow-50', border: 'border-yellow-200', icon: 'text-yellow-600' },
   blue: { bg: 'bg-blue-50', border: 'border-blue-200', icon: 'text-blue-600' },
+  red: { bg: 'bg-red-50', border: 'border-red-200', icon: 'text-red-600' },
+  purple: { bg: 'bg-purple-50', border: 'border-purple-200', icon: 'text-purple-600' },
 }
 
 interface TopicCardProps {

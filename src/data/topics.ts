@@ -184,6 +184,30 @@ export const topics: Topic[] = [
       { id: 'time-word-problems', name: 'Time Word Problems', description: 'Schedules, timetables, and travel time problems' },
     ],
   },
+  {
+    id: 'sof-imo-class3',
+    name: 'SOF IMO Class 3',
+    icon: 'Trophy',
+    color: 'red',
+    grades: [4],
+    subtopics: [
+      { id: 'sof3-paper1', name: 'Sample Paper 1', description: '40-question practice paper: Logical Reasoning, Math Reasoning, Everyday Math, Achievers' },
+      { id: 'sof3-paper2', name: 'Sample Paper 2', description: '40-question practice paper: Logical Reasoning, Math Reasoning, Everyday Math, Achievers' },
+      { id: 'sof3-paper3', name: 'Sample Paper 3', description: '40-question practice paper: Logical Reasoning, Math Reasoning, Everyday Math, Achievers' },
+    ],
+  },
+  {
+    id: 'sof-imo-class4',
+    name: 'SOF IMO Class 4',
+    icon: 'GraduationCap',
+    color: 'purple',
+    grades: [4, 5],
+    subtopics: [
+      { id: 'sof4-paper1', name: 'Sample Paper 1', description: '40-question practice paper: Logical Reasoning, Math Reasoning, Everyday Math, Achievers' },
+      { id: 'sof4-paper2', name: 'Sample Paper 2', description: '40-question practice paper: Logical Reasoning, Math Reasoning, Everyday Math, Achievers' },
+      { id: 'sof4-paper3', name: 'Sample Paper 3', description: '40-question practice paper: Logical Reasoning, Math Reasoning, Everyday Math, Achievers' },
+    ],
+  },
 ]
 
 export function getTopic(topicId: string): Topic | undefined {

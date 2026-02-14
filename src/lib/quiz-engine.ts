@@ -15,6 +15,8 @@ import { questions as symmetryQuestions } from '@/data/questions/symmetry'
 import { questions as logicalReasoningQuestions } from '@/data/questions/logical-reasoning'
 import { questions as moneyQuestions } from '@/data/questions/money'
 import { questions as timeCalendarQuestions } from '@/data/questions/time-calendar'
+import { questions as sofImoClass3Questions } from '@/data/questions/sof-imo-class3'
+import { questions as sofImoClass4Questions } from '@/data/questions/sof-imo-class4'
 
 const allQuestions: Question[] = [
   ...arithmeticQuestions,
@@ -30,6 +32,8 @@ const allQuestions: Question[] = [
   ...logicalReasoningQuestions,
   ...moneyQuestions,
   ...timeCalendarQuestions,
+  ...sofImoClass3Questions,
+  ...sofImoClass4Questions,
 ]
 
 const QUESTIONS_PER_SESSION = 10
