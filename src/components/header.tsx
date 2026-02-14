@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Brain } from 'lucide-react'
 import { useGrade } from '@/lib/grade-context'
 import {
@@ -13,6 +14,7 @@ import {
 
 export function Header() {
   const { grade, setGrade } = useGrade()
+  const pathname = usePathname()
 
   return (
     <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
@@ -33,8 +35,17 @@ export function Header() {
               <SelectItem value="6">Class 6</SelectItem>
             </SelectContent>
           </Select>
-          <Link href="/" className="hover:text-foreground transition-colors">
+          <Link
+            href="/"
+            className={`hover:text-foreground transition-colors ${pathname === '/' ? 'text-foreground font-medium' : ''}`}
+          >
             Topics
+          </Link>
+          <Link
+            href="/olympiad"
+            className={`hover:text-foreground transition-colors ${pathname === '/olympiad' ? 'text-foreground font-medium' : ''}`}
+          >
+            Olympiad
           </Link>
         </nav>
       </div>

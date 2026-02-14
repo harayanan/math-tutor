@@ -1,6 +1,6 @@
 # Math Tutor — HANDOVER.md
 
-## Current Status: Deployed (v6 — money & time topics)
+## Current Status: Deployed (v8 — Olympiad page + Ordering & Ranking subtopic)
 
 ## What Was Done
 
@@ -71,8 +71,8 @@
 - **Vercel**: https://math-tutor-rouge.vercel.app
 
 ## Architecture
-- 13 topics × 66 subtopics × 4 difficulty levels
-- ~1,320 questions with pre-built hints and explanations
+- 15 topics × 73 subtopics × 4 difficulty levels
+- ~1,580 questions with pre-built hints and explanations
 - Grade/class filter (4, 5, 6) in header — persisted in localStorage
 - Pre-quiz difficulty chooser (Level 1–4) with recommended level
 - Adaptive algorithm adjusts difficulty per-subtopic based on streaks
@@ -108,11 +108,40 @@
 - `src/components/topic-card.tsx` — added Coins + Clock icons, yellow + blue color mappings
 - `src/lib/quiz-engine.ts` — imported 2 new question banks into allQuestions
 
+### Session 7 (v7 — SOF IMO Practice Papers)
+1. **2 new SOF IMO topics** (240 new questions, 6 new subtopics):
+   - **SOF IMO Class 3** (Trophy/red, Grade 4) — 3 sample papers × 40 questions each
+   - **SOF IMO Class 4** (GraduationCap/purple, Grades 4–5) — 3 sample papers × 40 questions each
+2. Each paper has 4 sections: Logical Reasoning (10, diff 1), Mathematical Reasoning (10, diff 2), Everyday Mathematics (10, diff 3), Achievers (10, diff 4).
+3. Total questions: ~1,560 (up from ~1,320). Total topics: 15 (up from 13). Total subtopics: 72 (up from 66).
+
+**Files created:**
+- `src/data/questions/sof-imo-class3.ts` — 120 questions (3 papers × 40)
+- `src/data/questions/sof-imo-class4.ts` — 120 questions (3 papers × 40)
+
+**Files modified:**
+- `src/data/topics.ts` — added 2 new topic entries with 3 subtopics each
+- `src/components/topic-card.tsx` — added Trophy + GraduationCap icons, red + purple color mappings
+- `src/lib/quiz-engine.ts` — imported 2 new question banks into allQuestions
+
+### Session 8 (v8 — Olympiad Page + Ordering & Ranking)
+1. **Separate Olympiad page**: SOF IMO topics moved out of main topic grid into a dedicated `/olympiad` page. Header nav now has "Topics" and "Olympiad" links with active state highlighting.
+2. **Ordering & Ranking subtopic** (20 new questions): Added under Logical Reasoning. Covers position-from-top/bottom, finding total from two positions, counting between people, swapping positions, and multi-step ranking problems. 4 difficulty levels × 5 questions each.
+3. Total questions: ~1,580 (up from ~1,560). Total subtopics: 73 (up from 72).
+
+**Files created:**
+- `src/app/olympiad/page.tsx` — Olympiad page with grade-filtered SOF IMO topic cards
+
+**Files modified:**
+- `src/app/page.tsx` — filters out `sof-` topics from main grid
+- `src/components/header.tsx` — added Olympiad nav link, active state for both links
+- `src/data/topics.ts` — added ordering-ranking subtopic under logical-reasoning
+- `src/data/questions/logical-reasoning.ts` — added 20 ordering & ranking questions
+
 ## Blockers
 - None
 
 ## Next Steps
-- Add more questions to reach ~1,500+ total (currently ~1,320)
 - Set GEMINI_API_KEY env var in Vercel for LLM hint functionality
 - Consider adding a "Reset Progress" button in settings
 - Consider dark mode support

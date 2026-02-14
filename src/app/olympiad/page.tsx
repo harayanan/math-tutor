@@ -6,32 +6,32 @@ import { getTopicMastery } from '@/lib/progress'
 import { TopicCard } from '@/components/topic-card'
 import { useGrade } from '@/lib/grade-context'
 
-export default function HomePage() {
+const olympiadTopics = topics.filter((t) => t.id.startsWith('sof-'))
+
+export default function OlympiadPage() {
   const [masteryMap, setMasteryMap] = useState<Record<string, number>>({})
   const { grade } = useGrade()
 
   useEffect(() => {
     const map: Record<string, number> = {}
-    for (const topic of topics) {
+    for (const topic of olympiadTopics) {
       const subtopicIds = topic.subtopics.map((s) => s.id)
       map[topic.id] = getTopicMastery(subtopicIds)
     }
     setMasteryMap(map)
   }, [])
 
-  const regularTopics = topics.filter((t) => !t.id.startsWith('sof-'))
-
   const filteredTopics =
     grade === 'all'
-      ? regularTopics
-      : regularTopics.filter((t) => t.grades.includes(Number(grade)))
+      ? olympiadTopics
+      : olympiadTopics.filter((t) => t.grades.includes(Number(grade)))
 
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-2xl font-bold mb-2">Choose a Topic</h1>
+        <h1 className="text-2xl font-bold mb-2">Olympiad Practice</h1>
         <p className="text-muted-foreground">
-          Pick a math topic to practice. Questions adapt to your level!
+          Prepare for SOF International Mathematics Olympiad (IMO) with practice papers.
         </p>
       </div>
 

@@ -154,6 +154,7 @@ export const topics: Topic[] = [
       { id: 'math-operations-logic', name: 'Operations & Symbols', description: 'Decode operations and symbol puzzles' },
       { id: 'spatial-reasoning', name: 'Spatial Reasoning', description: 'Solve spatial and grid-based puzzles' },
       { id: 'logical-deduction', name: 'Logical Puzzles', description: 'Use logic to solve deduction puzzles' },
+      { id: 'ordering-ranking', name: 'Ordering & Ranking', description: 'Find positions from top, bottom, left, or right in a line' },
     ],
   },
   {

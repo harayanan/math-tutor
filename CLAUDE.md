@@ -18,8 +18,8 @@ npm run lint      # ESLint
 ```
 
 ## Architecture
-- **13 topics**, 66 subtopics total, **4 difficulty levels** (Easy/Medium/Hard/Very Hard)
-- **~1,320 questions** total (~100 per topic, 120 for Decimals), 5 questions per subtopic per level
+- **15 topics**, 73 subtopics total, **4 difficulty levels** (Easy/Medium/Hard/Very Hard)
+- **~1,580 questions** total (~100 per topic, 120 for Decimals, 120 per SOF paper set), 5 questions per subtopic per level
 - **Grade/class filter**: Dropdown in header (Class 4/5/6/All) — filters topics on home page, persisted in localStorage via React context
 - **Pre-quiz difficulty chooser**: Students pick Level 1–4 before each quiz; recommended level shown based on adaptive progress
 - **10 questions per quiz session**, drawn from chosen level + adjacent levels if needed
