@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useMemo } from 'react'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
@@ -13,15 +13,13 @@ import { createDefaultProgress } from '@/lib/progress'
 export default function TopicPage() {
   const params = useParams<{ topicId: string }>()
   const topic = getTopic(params.topicId)
-  const [progressMap, setProgressMap] = useState<Record<string, SubtopicProgress>>({})
-
-  useEffect(() => {
-    if (!topic) return
+  const progressMap = useMemo(() => {
+    if (!topic) return {}
     const map: Record<string, SubtopicProgress> = {}
     for (const subtopic of topic.subtopics) {
       map[subtopic.id] = getProgress(subtopic.id)
     }
-    setProgressMap(map)
+    return map
   }, [topic])
 
   if (!topic) {

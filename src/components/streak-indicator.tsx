@@ -13,6 +13,7 @@ export function StreakIndicator({ streak }: StreakIndicatorProps) {
 
   useEffect(() => {
     if (streak > prevStreak.current && streak > 0) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- Animation trigger: setBumping(true) is intentional here to start a CSS animation in response to a prop change, with a cleanup timer to reset it.
       setBumping(true)
       const timer = setTimeout(() => setBumping(false), 450)
       prevStreak.current = streak

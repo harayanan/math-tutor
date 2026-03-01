@@ -20,8 +20,18 @@ const CONFETTI_COLORS = [
   '#fbbf24', '#f59e0b',            // amber
 ]
 
-function ConfettiBurst() {
-  const pieces = Array.from({ length: 16 }, (_, i) => {
+interface ConfettiPiece {
+  x: number
+  y: number
+  rotation: number
+  color: string
+  size: number
+  delay: number
+  isCircle: boolean
+}
+
+function generateConfettiPieces(): ConfettiPiece[] {
+  return Array.from({ length: 16 }, (_, i) => {
     const angle = (i / 16) * 360
     const distance = 40 + Math.random() * 60
     const x = Math.cos((angle * Math.PI) / 180) * distance
@@ -30,26 +40,35 @@ function ConfettiBurst() {
     const color = CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)]
     const size = 6 + Math.random() * 6
     const delay = Math.random() * 0.15
+    const isCircle = Math.random() > 0.5
 
-    return (
-      <div
-        key={i}
-        className="confetti-piece"
-        style={{
-          '--confetti-x': `${x}px`,
-          '--confetti-y': `${y}px`,
-          '--confetti-r': `${rotation}deg`,
-          backgroundColor: color,
-          width: `${size}px`,
-          height: `${size}px`,
-          borderRadius: Math.random() > 0.5 ? '50%' : '2px',
-          animationDelay: `${delay}s`,
-        } as React.CSSProperties}
-      />
-    )
+    return { x, y, rotation, color, size, delay, isCircle }
   })
+}
 
-  return <div className="confetti-container">{pieces}</div>
+function ConfettiBurst() {
+  const [pieces] = useState(generateConfettiPieces)
+
+  return (
+    <div className="confetti-container">
+      {pieces.map((piece, i) => (
+        <div
+          key={i}
+          className="confetti-piece"
+          style={{
+            '--confetti-x': `${piece.x}px`,
+            '--confetti-y': `${piece.y}px`,
+            '--confetti-r': `${piece.rotation}deg`,
+            backgroundColor: piece.color,
+            width: `${piece.size}px`,
+            height: `${piece.size}px`,
+            borderRadius: piece.isCircle ? '50%' : '2px',
+            animationDelay: `${piece.delay}s`,
+          } as React.CSSProperties}
+        />
+      ))}
+    </div>
+  )
 }
 
 export function QuizQuestion({

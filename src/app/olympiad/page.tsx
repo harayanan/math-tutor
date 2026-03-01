@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useMemo } from 'react'
 import { topics } from '@/data/topics'
 import { getTopicMastery } from '@/lib/progress'
 import { TopicCard } from '@/components/topic-card'
@@ -9,16 +9,15 @@ import { useGrade } from '@/lib/grade-context'
 const olympiadTopics = topics.filter((t) => t.id.startsWith('sof-'))
 
 export default function OlympiadPage() {
-  const [masteryMap, setMasteryMap] = useState<Record<string, number>>({})
   const { grade } = useGrade()
 
-  useEffect(() => {
+  const masteryMap = useMemo(() => {
     const map: Record<string, number> = {}
     for (const topic of olympiadTopics) {
       const subtopicIds = topic.subtopics.map((s) => s.id)
       map[topic.id] = getTopicMastery(subtopicIds)
     }
-    setMasteryMap(map)
+    return map
   }, [])
 
   const filteredTopics =

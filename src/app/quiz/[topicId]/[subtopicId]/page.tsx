@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Star } from 'lucide-react'
@@ -27,18 +27,12 @@ export default function QuizPage() {
   const topic = getTopic(params.topicId)
   const subtopic = getSubtopic(params.topicId, params.subtopicId)
 
+  const initialProgress = topic && subtopic ? getProgress(params.subtopicId) : null
   const [session, setSession] = useState<QuizSession | null>(null)
   const [choosingDifficulty, setChoosingDifficulty] = useState(true)
-  const [streak, setStreak] = useState(0)
+  const [streak, setStreak] = useState(() => initialProgress ? Math.max(0, initialProgress.streak) : 0)
   const [levelUpMessage, setLevelUpMessage] = useState<string | null>(null)
-  const [recommendedLevel, setRecommendedLevel] = useState(1)
-
-  useEffect(() => {
-    if (!topic || !subtopic) return
-    const progress = getProgress(params.subtopicId)
-    setRecommendedLevel(Math.min(progress.currentLevel, 4))
-    setStreak(Math.max(0, progress.streak))
-  }, [topic, subtopic, params.topicId, params.subtopicId])
+  const [recommendedLevel] = useState(() => initialProgress ? Math.min(initialProgress.currentLevel, 4) : 1)
 
   const startQuiz = useCallback((difficulty: number) => {
     const newSession = createQuizSession(params.topicId, params.subtopicId, difficulty)

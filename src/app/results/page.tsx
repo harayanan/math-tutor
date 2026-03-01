@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
@@ -21,15 +21,12 @@ interface ResultsData {
 
 export default function ResultsPage() {
   const router = useRouter()
-  const [data, setData] = useState<ResultsData | null>(null)
-  const [showOnlyWrong, setShowOnlyWrong] = useState(false)
-
-  useEffect(() => {
+  const [data] = useState<ResultsData | null>(() => {
+    if (typeof window === 'undefined') return null
     const raw = sessionStorage.getItem('quiz-results')
-    if (raw) {
-      setData(JSON.parse(raw))
-    }
-  }, [])
+    return raw ? JSON.parse(raw) : null
+  })
+  const [showOnlyWrong, setShowOnlyWrong] = useState(false)
 
   if (!data) {
     return (
