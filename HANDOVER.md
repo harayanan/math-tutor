@@ -138,6 +138,18 @@
 - `src/data/topics.ts` — added ordering-ranking subtopic under logical-reasoning
 - `src/data/questions/logical-reasoning.ts` — added 20 ordering & ranking questions
 
+### Session 9 (ESLint fixes)
+- Fixed all ESLint errors across 8 files to achieve 0 errors, 0 warnings on `npm run lint`:
+  - `src/app/olympiad/page.tsx` — replaced `useEffect + useState` with `useMemo` for masteryMap computation
+  - `src/app/page.tsx` — replaced `useEffect + useState` with `useMemo` for masteryMap computation
+  - `src/app/quiz/[topicId]/[subtopicId]/page.tsx` — computed `initialProgress` during render, used `useState` lazy initializers for streak and recommendedLevel
+  - `src/app/results/page.tsx` — replaced `useEffect` with `useState` lazy initializer for sessionStorage read
+  - `src/app/topic/[topicId]/page.tsx` — replaced `useEffect + useState` with `useMemo` for progressMap
+  - `src/components/quiz-question.tsx` — extracted `generateConfettiPieces` to module scope, used `useState(generateConfettiPieces)` lazy initializer (React 19 purity rule)
+  - `src/components/streak-indicator.tsx` — added eslint-disable for valid animation-triggering setState
+  - `src/lib/grade-context.tsx` — replaced `useEffect` with `useState` lazy initializer for localStorage read
+- Committed and pushed to GitHub
+
 ## Blockers
 - None
 
@@ -148,4 +160,4 @@
 - Consider per-subtopic grade tagging (currently grades are per-topic)
 
 ## Last Reviewed
-2026-02-14
+2026-03-01
